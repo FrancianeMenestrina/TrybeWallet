@@ -5,8 +5,8 @@ import { fetchCurrence } from '../actions';
 
 class Wallet extends React.Component {
   componentDidMount = () => {
-    const { fetchCurrence } = this.props;
-    fetchCurrence();
+    const { fetchCurrenceProps } = this.props;
+    fetchCurrenceProps();
   };
 
   render() {
@@ -30,11 +30,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCurrence: () => dispatch(fetchCurrence()),
+  fetchCurrenceProps: () => dispatch(fetchCurrence()),
 });
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
+  fetchCurrenceProps: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

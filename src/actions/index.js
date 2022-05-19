@@ -14,16 +14,14 @@ export const setCurrence = (moedas) => ({
   payload: moedas,
 });
 
-export const fetchCurrence = () => {
-  return async (dispatch) => {
-    try {
-      const response = await fetch('https://economia.awesomeapi.com.br/json/all');
-      const result = await response.json();
-      console.log('result', result);
-      const currencies = Object.keys(result).filter((moeda) => moeda !== 'USDT');
-      dispatch(setCurrence(currencies));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const fetchCurrence = () => async (dispatch) => {
+  try {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const result = await response.json();
+    console.log('result', result);
+    const currencies = Object.keys(result).filter((moeda) => moeda !== 'USDT');
+    dispatch(setCurrence(currencies));
+  } catch (error) {
+    console.log(error);
+  }
 };
