@@ -25,3 +25,8 @@ export const fetchCurrence = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const actionAddExpense = (expense) => ({
+  type: 'ADD_EXPENSE',
+  payload: expense,
+});
