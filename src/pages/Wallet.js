@@ -13,7 +13,6 @@ class Wallet extends React.Component {
       tag: 'Alimentação',
       description: '',
       id: 0,
-      exchangeRates: {},
     };
   }
 
@@ -33,7 +32,7 @@ class Wallet extends React.Component {
     console.log('cliquei');
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     const result = await response.json();
-    Object.keys(result).filter((currency) => currency !== 'USDT');
+    Object.keys(result).filter((curr) => curr !== 'USDT');
     console.log('result', result);
     this.setState(() => ({
       exchangeRates: result,
@@ -129,17 +128,43 @@ class Wallet extends React.Component {
           <button type="button" onClick={ this.handleSubmit }>Adicionar despesa</button>
         </form>
         <table>
-          <tr>
-            <th>Descrição</th>
-            <th>Tag</th>
-            <th>Método de pagamento</th>
-            <th>Valor</th>
-            <th>Moeda</th>
-            <th>Câmbio utilizado</th>
-            <th>Valor convertido</th>
-            <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Valor</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir</th>
+            </tr>
+            {
+              despesas.map((despesa) => (
+                <tr key={ despesa.id }>
+                  <td>{ despesa.description }</td>
+                  <td>{ despesa.tag }</td>
+                  <td>{ despesa.method }</td>
+                  <td>{ parseFloat(despesa.value).toFixed(2) }</td>
+                  <td>
+                    { despesa.exchangeRates[despesa.currency]
+                      .name.replace('/Real Brasileiro', '') }
+                  </td>
+                  <td>
+                    { parseFloat(despesa.exchangeRates[despesa.currency].ask)
+                      .toFixed(2) }
+                  </td>
+                  <td>
+                    { (parseFloat(despesa.exchangeRates[despesa.currency]
+                      .ask) * despesa.value)
+                      .toFixed(2)}
+                  </td>
+                  <td>Real</td>
+                </tr>
+              ))
+            }
+          </tbody>
         </table>
       </div>
     );
@@ -161,7 +186,7 @@ Wallet.propTypes = {
   currencies: PropTypes.string.isRequired,
   fetchCurrenceProps: PropTypes.func.isRequired,
   dispatchAddExpenses: PropTypes.func.isRequired,
-  despesas: PropTypes.arrayOf.isRequired,
+  despesas: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
