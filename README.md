@@ -1,16 +1,19 @@
-# 🚧 README em construção 🚧
+<h1>Trybe Wallet Project</h1>
 
-<!-- Olá, Tryber!
+Esta aplicação trata-se de uma carteira de controle de gastos com conversor de moedas, ao utilizar essa aplicação o usuário deverá ser capaz de:
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+- Adicionar e remover um gasto;
+- Visualizar uma tabela com seus gastos;
+- Visualizar o total de gastos convertidos para uma moeda de escolha;
 
-É essencial que você preencha esse documento por conta própria, ok?
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+<h2>Ferramentas utilizadas:</h2>
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+- React
 
--->
+- Redux
+
+
+
+
+
