@@ -7,7 +7,7 @@ Esta aplicação trata-se de uma carteira de controle de gastos com conversor de
 - Visualizar o total de gastos convertidos para uma moeda de escolha;
 
 
-<h2>Ferramentas utilizadas:</h2>
+<h2>Tecnologias utilizadas:</h2>
 
 - React
 
